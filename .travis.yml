@@ -6,7 +6,7 @@ services:
   - docker
 
 script:
-  - docker build
+  - docker build .
 
 after_success:
   - heroku container:login
