@@ -9,7 +9,6 @@ script:
   - docker build .
 
 after_success:
-  - heroku login
   - heroku container:login
   - heroku container:push web -a heroku-travis-docker-push
   - heroku container:release web release -a heroku-travis-docker-push
