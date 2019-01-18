@@ -1,0 +1,14 @@
+dist: xenial
+
+language: ruby
+
+services:
+  - docker
+
+script:
+  - docker build
+
+after_success:
+  - heroku container:login
+  - heroku container:push web
+  - heroku container:release web release
