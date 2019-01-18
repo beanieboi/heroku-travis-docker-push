@@ -9,6 +9,11 @@ script:
   - docker build .
 
 after_success:
+  - heroku login
   - heroku container:login
-  - heroku container:push web
-  - heroku container:release web release
+  - heroku container:push web -a heroku-travis-docker-push
+  - heroku container:release web release -a heroku-travis-docker-push
+
+env:
+  global:
+    secure: V3nOyCCIRK+Zmdt51wqzar3Yxaek6IppscwAiF38xretA3PDwXTJiXXuSQEGAQjEmVBBMuF2IwTwq9/sxnm7SU27Gcymid18loNFY38+zSLK8mn052sxG4MOCSYk9RwMEY+Dia/L1nUuW0lx6m4SkDX1V8gVbA662K9G0kDlcRSjfbIEV1lsbZ5eh8916yHPhtNTWQHv+D6LFFlYarPRAqj619wMd8vyEZYgB0KdM09JRgsl/P5VZuPdGkaWk5qSH8eFhg9Tp7/uW6WBsHki5nrkq5Be489Tz8Vib7Rv6s4p8NslGdQ/w/0BTyf7ktmYTXTzRnlfj6vTmcdcCZEsHwtMnzhuhWas/cyl4KO7u4wL/AuzKSZc+c7evpadvExzagVg9rX21X+f6gehToWP1skoyZKA6GYf8Q1/yGoqXxOnEIQaJcLmQo6nsRAAV9zCSO4Jk52reOGbfUaBzStHbBRojr2V1FXDZx0iftZCJgKRkJb7D0B+k2tuJo90f2g+Oj6X+tzZIJvTf6VgTnhhI8/b4RjTDsDJMHdtLMTHodxHww/cGRbWPE90HYyZrIqzJhu1HwxIT6Ttcb3EglSg4iOdPK6oDjx09hE+57EfGSxjHZPGpcdQAGDtCrUklntOm8x5j/WdebAIbeCQXTNOmoF47Gv6ZrDbF9qcVFMLxv8=
